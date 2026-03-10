@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function alternarLuz() {
+            const cabecalho = document.querySelector('h1');
+            if (cabecalho.innerHTML === 'A luz está APAGADA') {
+                cabecalho.innerHTML = 'A luz está ACESA';
+            }
+            else {
+                cabecalho.innerHTML = 'A luz está APAGADA';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>A luz está APAGADA</h1>
+    <button onclick="alternarLuz()">Clique Aqui</button>
+</body>
+
+</html>
