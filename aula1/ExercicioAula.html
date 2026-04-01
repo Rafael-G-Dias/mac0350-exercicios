@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Jupiterweb, versão melhorada</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        :root {
+            --usp-azul-escuro: #001A4C;
+            --usp-azul-claro: #077ed3;
+            --usp-amarelo: #FFB300;
+            --usp-ciano: #20b4b2;
+            --fundo-menu: #f4f4f4;
+            --borda-menu: #cccccc;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #ffffff;
+        }
+
+        header img {
+            height: 50px;
+            margin-right: 20px;
+        }
+
+        .header-title {
+            color: var(--usp-azul-claro);
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .header-title p {
+            font-size: 0.9rem;
+        }
+
+        .color-stripes {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stripe-blue {
+            height: 12px;
+            background-color: var(--usp-azul-claro);
+        }
+
+        .stripe-yellow {
+            height: 4px;
+            background-color: var(--usp-amarelo);
+        }
+
+        .stripe-cyan {
+            height: 8px;
+            background-color: var(--usp-ciano);
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            padding: 20px 30px;
+            gap: 30px;
+        }
+
+        aside {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .menu-box {
+            border: 1px solid var(--borda-menu);
+            margin-bottom: 20px;
+        }
+
+        .menu-box h3 {
+            background-color: var(--borda-menu);
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-box ul {
+            list-style: none;
+        }
+
+        .menu-box li {
+            border-bottom: 1px dotted var(--borda-menu);
+        }
+
+        .menu-box a {
+            display: block;
+            padding: 8px 10px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.85rem;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .menu-box a:hover {
+            background-color: var(--fundo-menu);
+            color: var(--usp-azul-claro);
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .login-header {
+            border-bottom: 1px solid var(--borda-menu);
+            margin-bottom: 40px;
+            padding-bottom: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+            gap: 10px;
+        }
+
+        label {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 6px;
+            border: 1px solid #999;
+            width: 200px;
+        }
+
+        input[type="submit"] {
+            padding: 6px 15px;
+            background-color: #f0f0f0;
+            border: 1px solid #999;
+            cursor: pointer;
+            margin-left: auto;
+            margin-right: 60px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: var(--usp-azul-claro);
+            color: white;
+            border-color: var(--usp-azul-escuro);
+        }
+
+        footer {
+            border-top: 1px solid var(--borda-menu);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        footer a {
+            color: var(--usp-azul-claro);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            aside {
+                width: 100%;
+            }
+
+            .input-group {
+                justify-content: center;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                width: 100%;
+            }
+
+            input[type="submit"] {
+                margin: 0 auto;
+                width: 100%;
+                padding: 10px;
+            }
+
+            header img {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="https://uspdigital.usp.br/comumwebdev/imagens/cabecalho/usp-logo.png" alt="Logo USP">
+        <div class="header-title">
+            <h1>Universidade de São Paulo</h1>
+            <p>Brasil</p>
+        </div>
+    </header>
+
+    <div class="color-stripes">
+        <div class="stripe-yellow"></div>
+        <div class="stripe-cyan"></div>
+        <div class="stripe-blue"></div>
+    </div>
+
+    <div class="container">
+
+        <aside>
+            <div class="menu-box">
+                <h3>Público</h3>
+                <ul>
+                    <li><a href="https://uspdigital.usp.br/jupiterweb/jupArquivosPublicos.jsp?tiparq=9&anoprg=2026&codmnu=6863"
+                            target="_blank">Calendário
+                            Escolar</a></li>
+                    <li><a href="https://uspdigital.usp.br/jupiterweb/jupCarreira.jsp?codmnu=8275"
+                            target="_blank">Cursos de
+                            ingresso</a></li>
+                    <li><a href="https://uspdigital.usp.br/jupiterweb/jupDisciplinaBusca?tipo=D&codmnu=6755"
+                            target="_blank">Disciplina</a>
+                    </li>
+                    <li><a href="https://uspdigital.usp.br/juno/bnfArquivosPublicos.jsp?tiparq=1&anoprg=2025&codm?codmnu=11502"
+                            target="_blank">Editais</a>
+                    </li>
+                    <li><a href="https://uspdigital.usp.br/jupiterweb/FAQ.jsp?codmnu=9326" target="_blank">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="menu-box">
+                <h3>Acesso Restrito</h3>
+                <ul>
+                    <li><a href="https://uspdigital.usp.br/jupiterweb/webLogin.jsp">Entrar</a></li>
+                    <li><a href="https://uspdigital.usp.br/jupiterweb/esqueciSenha">Esqueci a Senha</a></li>
+                    <li><a href="https://uspdigital.usp.br/jupiterweb/primeiroAcesso">Primeiro Acesso</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main>
+            <div class="login-header">
+                Login
+            </div>
+
+            <form action="#" method="POST">
+                <div class="input-group">
+                    <label for="usuario">Usuário:</label>
+                    <input type="text" id="usuario" name="usuario" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+
+                <input type="submit" value="Entrar">
+            </form>
+        </main>
+    </div>
+
+    <footer>
+        <p>
+            <a href="#">Créditos</a> | <a href="#">Fale conosco</a>
+        </p>
+        <p>© 1999 - 2026 - Superintendência de Tecnologia da Informação/USP</p>
+        <p>Desenvolvido para a disciplina de Introdução ao Desenvolvimento de Software</p>
+    </footer>
+
+</body>
+
+</html>
