@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+
+<body>
+    <h1>Faça seu Login</h1>
+
+    <label>Nome:</label> <br>
+    <input type="text" id="nome"><br><br>
+
+    <label>Senha:</label> <br>
+    <input type="password" id="senha"><br><br>
+
+    <button onclick="logar()">Entrar</button>
+
+    <script>
+        async function logar() {
+            const dados = {
+                nome: document.getElementById('nome').value,
+                senha: document.getElementById('senha').value
+            };
+            const resposta = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dados)
+            });
+
+            if (resposta.ok) {
+                window.location.href = "/home";
+            } else {
+                alert("Nome ou senha incorretos.");
+            }
+        }
+    </script>
+</body>
+
+</html>
