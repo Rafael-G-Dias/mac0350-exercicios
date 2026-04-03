@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exercícios HTMX</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <style>
+        .active {
+            background-color: #ff690a;
+            color: white;
+        }
+
+        nav button {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #conteudo {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body hx-get="/aba/curtidas" hx-trigger="load" hx-target="#conteudo">
+
+    <nav id="navbar">
+        <button id="btn-curtidas" hx-get="/aba/curtidas" hx-target="#conteudo" hx-push-url="true"
+            hx-on::after-request="limparAtivos(this)" hx-trigger="click, keyup[shiftKey&&altKey&&key=='P'] from:body"
+            class="active">
+            Curtidas (Shift+AltGr+P)
+        </button>
+
+        <button id="btn-jupiter" hx-get="/aba/jupiter" hx-target="#conteudo" hx-on::after-request="limparAtivos(this)">
+            Júpiter
+        </button>
+
+        <button id="btn-professor" hx-get="/aba/professor" hx-target="#conteudo"
+            hx-on::after-request="limparAtivos(this)">
+            Professor
+        </button>
+    </nav>
+
+    <div id="conteudo">
+    </div>
+
+    <script>
+        function limparAtivos(elemento) {
+            document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+            elemento.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+<div id="secao-curtidas">
+    <h2>Contador de Curtidas</h2>
+    <p>Total: <strong>{{ curtidas }}</strong></p>
+
+    <button hx-post="/curtir" hx-target="#conteudo" hx-swap="innerHTML">
+        Curtir!
+    </button>
+
+    <button hx-delete="/curtir" hx-confirm="Tem certeza que deseja zerar as curtidas?" hx-target="#conteudo"
+        hx-swap="innerHTML" style="background-color: #ff4444; color: white;">
+        Zerar Curtidas
+    </button>
+</div>
