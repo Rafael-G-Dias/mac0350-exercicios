@@ -1,0 +1,23 @@
+<ul>
+    {% for aluno in alunos %}
+    <li>{{ aluno.id }} - {{ aluno.nome }}</li>
+    {% endfor %}
+</ul>
+
+<div>
+    {% if page > 1 %}
+    <button hx-get="/alunos?q={{ q }}&page={{ page - 1 }}" hx-target="#container-lista">
+        Anterior
+    </button>
+    {% else %}
+    <button disabled>Anterior</button>
+    {% endif %}
+
+    {% if tem_proximo %}
+    <button hx-get="/alunos?q={{ q }}&page={{ page + 1 }}" hx-target="#container-lista">
+        Próximo
+    </button>
+    {% else %}
+    <button disabled>Próximo</button>
+    {% endif %}
+</div>
