@@ -1,0 +1,17 @@
+{% for jogador in jogadores %}
+<tr id="jogador-{{ jogador.id }}">
+    <td>{{ jogador.nome }}</td>
+    <td>{{ jogador.posicao }}</td>
+    <td>{{ jogador.nota }}</td>
+    <td>
+        <button hx-get="/jogador/{{ jogador.id }}/editar" hx-target="#jogador-{{ jogador.id }}" hx-swap="outerHTML">
+            Editar
+        </button>
+
+        <button class="btn-deletar" hx-delete="/jogador/{{ jogador.id }}" hx-target="#jogador-{{ jogador.id }}"
+            hx-swap="outerHTML" hx-confirm="Tem certeza que deseja remover o jogador {{ jogador.nome }}?">
+            Remover
+        </button>
+    </td>
+</tr>
+{% endfor %}

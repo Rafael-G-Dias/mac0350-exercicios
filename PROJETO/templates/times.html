@@ -1,0 +1,41 @@
+<style>
+    body {
+        background-image: url('/static/img/bg-times.webp') !important;
+    }
+</style>
+<div class="gestao-container">
+    <h2>Gestão de Times</h2>
+
+    <form hx-post="/time" hx-target="#tabela-times" hx-swap="beforeend" hx-on::after-request="this.reset()">
+
+        <input type="text" name="nome" placeholder="Nome do Time (ex: Real Matismo)" required>
+
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <label for="cor_camisa"><strong>Cor da Camisa:</strong></label>
+            <input type="color" id="cor_camisa" name="cor_camisa" value="#000000"
+                style="padding: 0; width: 50px; height: 40px; cursor: pointer;" required>
+        </div>
+
+        <select name="capitao_id">
+            <option value="">Nenhum Capitão / Sorteio Total</option>
+            {% for jogador in jogadores %}
+            <option value="{{ jogador.id }}">{{ jogador.nome }} (⭐ {{ jogador.nota }})</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="btn-salvar">Criar Time</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome da Equipe</th>
+                <th>Cor da Camisa</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-times">
+            {% include "partials/lista_times.html" %}
+        </tbody>
+    </table>
+</div>

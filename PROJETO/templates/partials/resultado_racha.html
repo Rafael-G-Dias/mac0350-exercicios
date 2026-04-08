@@ -1,0 +1,39 @@
+<div id="resultado-sorteio" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+
+    <div class="card-time"
+        style="flex: 1; min-width: 250px; border: 3px solid {{ time_a.cor_camisa }}; border-radius: 8px; padding: 15px; background: #fff;">
+        <h3 style="text-align: center; color: {{ time_a.cor_camisa }}; font-size: 24px;">🛡️ {{ time_a.nome }}</h3>
+        <hr>
+        <ul style="list-style: none; padding: 0;">
+            {% for j in jogadores_a %}
+            <li style="padding: 10px; border-bottom: 1px solid #eee;">
+                <strong>{{ j.nome }}</strong> ({{ j.posicao }}) - ⭐ {{ j.nota }}
+                {% if j.id == time_a.capitao_id %}
+                <span
+                    style="font-size: 12px; background: #f1c40f; padding: 2px 5px; border-radius: 3px; margin-left: 5px;">C</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        <p style="text-align: right; font-weight: bold; margin-top: 10px;">Média: {{ media_a }}</p>
+    </div>
+
+    <div class="card-time"
+        style="flex: 1; min-width: 250px; border: 3px solid {{ time_b.cor_camisa }}; border-radius: 8px; padding: 15px; background: #fff;">
+        <h3 style="text-align: center; color: {{ time_b.cor_camisa }}; font-size: 24px;">🛡️ {{ time_b.nome }}</h3>
+        <hr>
+        <ul style="list-style: none; padding: 0;">
+            {% for j in jogadores_b %}
+            <li style="padding: 10px; border-bottom: 1px solid #eee;">
+                <strong>{{ j.nome }}</strong> ({{ j.posicao }}) - ⭐ {{ j.nota }}
+                {% if j.id == time_b.capitao_id %}
+                <span
+                    style="font-size: 12px; background: #f1c40f; padding: 2px 5px; border-radius: 3px; margin-left: 5px;">C</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        <p style="text-align: right; font-weight: bold; margin-top: 10px;">Média: {{ media_b }}</p>
+    </div>
+
+</div>

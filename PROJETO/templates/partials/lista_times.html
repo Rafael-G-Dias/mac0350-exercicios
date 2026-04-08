@@ -1,0 +1,19 @@
+{% for time in times %}
+<tr id="time-{{ time.id }}">
+    <td><strong>{{ time.nome }}</strong></td>
+    <td>
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <div
+                style="width: 20px; height: 20px; background-color: {{ time.cor_camisa }}; border: 1px solid #ccc; border-radius: 3px;">
+            </div>
+            {{ time.cor_camisa }}
+        </div>
+    </td>
+    <td>
+        <button class="btn-deletar" hx-delete="/time/{{ time.id }}" hx-target="#time-{{ time.id }}" hx-swap="outerHTML"
+            hx-confirm="Tem certeza que deseja apagar o time {{ time.nome }}?">
+            Excluir
+        </button>
+    </td>
+</tr>
+{% endfor %}

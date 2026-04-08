@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Rachas</title>
+
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        body {
+            background-image: url('/static/img/bg-home.webp');
+            background-size: 100vw 100vh !important;
+            background-repeat: no-repeat !important;
+            background-attachment: fixed !important;
+            min-height: 100vh;
+        }
+
+        /* 2. Configuração Específica para Celulares */
+        @media (max-width: 600px) {
+            body {
+                background-attachment: scroll !important;
+                background-position: center center !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>⚽ Gestor de Partidas</h1>
+    </header>
+
+    <nav>
+        <button onclick="window.location.href='/'">Home</button>
+
+        <button hx-get="/jogadores" hx-target="#conteudo">Gestão de Jogadores</button>
+        <button hx-get="/times" hx-target="#conteudo">Gestão de Times</button>
+    </nav>
+
+    <main id="conteudo">
+        <h2>Bem-vindo ao Gestor!</h2>
+        <p>Use o menu acima para navegar pelas funcionalidades do sistema.</p>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <h3>Sorteio Rápido</h3>
+            <p>Clique abaixo para dividir os jogadores cadastrados em dois times equilibrados.</p>
+
+            <button class="btn-salvar" hx-get="/gerar-times" hx-target="#zona-sorteio"
+                style="padding: 15px 30px; font-size: 18px;">
+                ⚡ Gerar Times Equilibrados
+            </button>
+        </div>
+
+        <div id="zona-sorteio"></div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<tr id="jogador-{{ jogador.id }}" style="background-color: #fff3cd;">
+    <td>{{ jogador.nome }}</td>
+    <td>{{ jogador.posicao }}</td>
+
+    <td>
+        <input type="number" name="nota" value="{{ jogador.nota }}" min="1" max="10" style="width: 70px;">
+    </td>
+
+    <td>
+        <button class="btn-salvar" hx-put="/jogador/{{ jogador.id }}" hx-include="closest tr"
+            hx-target="#jogador-{{ jogador.id }}" hx-swap="outerHTML">
+            Salvar
+        </button>
+
+        <button hx-get="/jogador/{{ jogador.id }}" hx-target="#jogador-{{ jogador.id }}" hx-swap="outerHTML">
+            Cancelar
+        </button>
+    </td>
+</tr>

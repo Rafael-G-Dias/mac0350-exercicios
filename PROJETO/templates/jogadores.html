@@ -1,0 +1,48 @@
+<style>
+    body {
+        background-image: url('/static/img/bg-jogadores.webp') !important;
+    }
+</style>
+<div class="gestao-container">
+    <h2>Gestão de Jogadores</h2>
+
+    <form hx-post="/jogador" hx-target="#tabela-jogadores" hx-swap="beforeend" hx-on::after-request="this.reset()">
+
+        <input type="text" name="nome" placeholder="Nome do Jogador" required>
+
+        <select name="posicao" required>
+            <option value="" disabled selected>Escolha a Posição...</option>
+            <option value="Goleiro">Goleiro</option>
+            <option value="Zagueiro">Zagueiro</option>
+            <option value="Lateral">Lateral</option>
+            <option value="Meia">Meia</option>
+            <option value="Atacante">Atacante</option>
+        </select>
+
+        <input type="number" name="nota" placeholder="Nota Técnica (1 a 10)" min="1" max="10" required>
+
+        <button type="submit" class="btn-salvar">Adicionar ao Racha</button>
+    </form>
+
+    <hr style="margin: 30px 0; border: 1px solid #eee;">
+
+    <div style="margin-bottom: 15px;">
+        <input type="text" name="q" placeholder="🔍 Buscar jogador pelo nome..." hx-get="/jogadores"
+            hx-trigger="input changed delay:300ms" hx-target="#tabela-jogadores"
+            style="width: 100%; padding: 10px; font-size: 16px;">
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Posição</th>
+                <th>Nota</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-jogadores">
+            {% include "partials/lista_jogadores.html" %}
+        </tbody>
+    </table>
+</div>
